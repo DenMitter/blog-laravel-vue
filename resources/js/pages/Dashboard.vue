@@ -8,24 +8,19 @@ export default {
     },
     mounted() {
         const token = localStorage.getItem('token');
-        if (!token) {
-            this.$router.push({ name: 'Home' });
-        } else {
-            axios
-                .get('/api/user', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
-                .then((response) => {
-                    this.id = response.data.id
-                    this.name = response.data.name
-                })
-                .catch((error) => {
-                    console.log('Unauthorized: Invalid token');
-                    this.$router.push({ name: 'Home' });
-                });
-        }
+        axios
+            .get('/api/user', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then((response) => {
+                this.id = response.data.id
+                this.name = response.data.name
+            })
+            .catch((error) => {
+                console.log('Unauthorized: Invalid token');
+            });
     },
     methods: {
         logout() {
@@ -35,7 +30,7 @@ export default {
                 .get('/api/logout')
                 .then((response) => {
                     localStorage.removeItem('token');
-                    this.$router.push({ name: 'Home' });
+                    this.$router.push({ name: 'Login' });
                 })
                 .catch((error) => {
                     console.log('Error logging out:', error);
