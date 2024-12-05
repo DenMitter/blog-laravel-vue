@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('register', [RegisterUserController::class, 'store']);
 Route::post('login', [RegisterUserController::class, 'login']);
+
 Route::middleware('auth:sanctum')->post('logout', [RegisterUserController::class, 'destroy']);
+Route::middleware('auth:sanctum')->post('categories', [CategoryController::class, 'index']);
+Route::middleware('auth:sanctum')->post('categories/create', [CategoryController::class, 'store']);

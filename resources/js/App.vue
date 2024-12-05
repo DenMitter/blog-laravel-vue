@@ -9,7 +9,7 @@ export default {
         }
     },
     created() {
-        if (localStorage.getItem('token')) {
+        if (localStorage.getItem('authenticated')) {
             this.loggedIn = true;
         }
     },

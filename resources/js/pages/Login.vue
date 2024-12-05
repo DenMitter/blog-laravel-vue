@@ -3,10 +3,8 @@ export default {
     data() {
         return {
             fields: {
-                name: '',
                 email: '',
                 password: '',
-                confirm_password: ''
             },
             errors: {}
         }
@@ -17,7 +15,7 @@ export default {
 
             axios.post('/api/login', this.fields)
                 .then((response) => {
-                    localStorage.setItem('token', response.data.access_token);
+                    localStorage.setItem('authenticated', 'true');
                     this.$router.push({ name: 'Dashboard' });
                 })
                 .catch((error) => {

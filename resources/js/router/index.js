@@ -8,6 +8,8 @@ import SingleBlog from "../pages/SingleBlog.vue";
 import Login from "../pages/Login.vue";
 import Register from "../pages/Register.vue";
 import Dashboard from "../pages/Dashboard.vue";
+import CreateCategories from "../pages/categories/CreateCategories.vue";
+import CategoriesList from "../pages/categories/CategoriesList.vue";
 
 const routes = [
     {
@@ -59,6 +61,18 @@ const routes = [
         component: Dashboard,
         meta: { requiresAuth: true },
     },
+    {
+        path: "/category/create",
+        name: "CreateCategories",
+        component: CreateCategories,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: "/categories",
+        name: "CategoriesList",
+        component: CategoriesList,
+        meta: { requiresAuth: true },
+    },
 ];
 
 const router = createRouter({
@@ -67,13 +81,13 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-    const token = localStorage.getItem('token');
+    const authenticated = localStorage.getItem('authenticated');
 
-    if (to.meta.requiresGuest && token) {
+    if (to.meta.requiresGuest && authenticated) {
         return {
             name: "Dashboard",
         }
-    } else if (to.meta.requiresAuth && !token) {
+    } else if (to.meta.requiresAuth && !authenticated) {
         return {
             name: "Login",
         }

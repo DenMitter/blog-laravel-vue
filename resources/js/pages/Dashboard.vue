@@ -29,7 +29,7 @@ export default {
             axios
                 .get('/api/logout')
                 .then((response) => {
-                    localStorage.removeItem('token');
+                    localStorage.removeItem('authenticated');
                     this.$router.push({ name: 'Login' });
                 })
                 .catch((error) => {
@@ -49,9 +49,8 @@ export default {
             <ul>
                 <li><a href="">Create Post</a></li>
 
-                <li><a href="">Create Category</a></li>
-
-                <li><a href="">Categories List</a></li>
+                <li><router-link :to="{ name: 'CreateCategories' }">Create Category</router-link></li>
+                <li><router-link :to="{ name: 'CategoriesList' }">Categories List</router-link></li>
             </ul>
         </div>
     </div>

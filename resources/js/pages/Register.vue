@@ -17,7 +17,7 @@ export default {
         submit() {
             axios.post('/api/register', this.fields)
                 .then((response) => {
-                    localStorage.setItem('token', response.data.access_token);
+                    localStorage.setItem('authenticated', 'true');
                     this.$router.push({ name: 'Dashboard' });
                     this.$emit('updateSideBar');
                 })

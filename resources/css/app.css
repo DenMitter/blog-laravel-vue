@@ -519,3 +519,13 @@ textarea {
     display: block;
     margin: 10px 0 15px;
 }
+
+.success-msg {
+    padding: 12px 16px;
+    border-radius: 9px;
+    color: #270;
+    background-color: #dff3bf;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+}
